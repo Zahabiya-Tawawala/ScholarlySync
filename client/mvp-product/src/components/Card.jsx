@@ -43,8 +43,10 @@ export default function OutlinedCard() {
   //   open and close the dilogue box
 
   const [open, setOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (card) => {   // card state is defined here it was showing error before cause it was not defined passed as a function parameter
+    setSelectedCard(card);
     setOpen(true);
   };
 
@@ -72,7 +74,7 @@ export default function OutlinedCard() {
             <Typography variant="h6">Title: {card.description}</Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" variant="contained" onClick={handleClickOpen}>
+            <Button size="small" variant="contained" onClick={() => handleClickOpen(card)}> {/* card state is defined here passed here and defined  */}
               View Details
             </Button>
           </CardActions>
@@ -80,21 +82,23 @@ export default function OutlinedCard() {
       ))}
 
       {/* dialogue box component */}
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>
-          Project Assessment - 1
-          <IconButton onClick={handleClose}>
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent>
-          <Typography>Title: Make a Dashboard using powerBI</Typography>
-          <Typography>Status: Not Completed</Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-        </DialogActions>
-      </Dialog>
+      {selectedCard && (
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>
+            {selectedCard.title}
+            <IconButton onClick={handleClose}>
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            <Typography>Title: {selectedCard.description}</Typography>
+            <Typography>Status: {selectedCard.status}</Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Close</Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </Box>
   );
 }
