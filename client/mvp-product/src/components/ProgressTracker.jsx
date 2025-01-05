@@ -4,7 +4,6 @@ const ProgressTracker = () => {
   return (
     <div>
       this is Progress Tracker
-      {/* h*/}
     </div>
   )
 }
