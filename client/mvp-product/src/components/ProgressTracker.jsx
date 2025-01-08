@@ -5,7 +5,7 @@ const ProgressTracker = () => {
     <div>
       this is Progress Tracker
       {/* here all the progress will be tracked need to check the backend if this fucntionality!!! */}
-      {/* here all the progress will be tracked need to check the backend if this fucntionality!!! */}
+
     </div>
   )
 }
