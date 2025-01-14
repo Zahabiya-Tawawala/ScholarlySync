@@ -12,6 +12,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+// import LinearProgress from '@mui/material/LinearProgress'
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 const cardData = [
   {
@@ -78,6 +80,7 @@ export default function OutlinedCard() {
               View Details
             </Button>
           </CardActions>
+          <ProgressBar now={40} style={{}}/>
         </Card>
       ))}
 
@@ -99,6 +102,8 @@ export default function OutlinedCard() {
           </DialogActions>
         </Dialog>
       )}
+
+
     </Box>
   );
 }
