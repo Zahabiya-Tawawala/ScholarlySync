@@ -7,10 +7,10 @@ const Layout = ({ children, sidebarOpen }) => {
     <Box
       component="main"
       sx={{
-        flexGrow: 1,
+        flexGrow: 0, //see what this means?
         p: 3,
         mt: '64px',
-        ml: sidebarOpen ? '240px' : 0,
+        ml: sidebarOpen ? '300px' : '185px',
         transition: 'margin 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
       }}
     >

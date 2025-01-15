@@ -19,27 +19,58 @@ const cardData = [
   {
     title: "Project Assessment - 1",
     status: "not completed",
-    description: "Title: Make a Dashboard using powerBI",
+    description: "Make a Dashboard using powerBI",
   },
   {
     title: "Project Assessment - 2",
     status: "not completed",
-    description: "Title: Make a Dashboard using Tableau",
+    description: "Make a Dashboard using Tableau",
   },
   {
     title: "Project Assessment - 3",
     status: "not completed",
-    description: "Title: Make a Dashboard using Excel",
+    description: "Make a Dashboard using Excel",
+  },
+  {
+    title: "Project Assessment - 1",
+    status: "not completed",
+    description: "Make a Dashboard using powerBI",
+  },
+  {
+    title: "Project Assessment - 2",
+    status: "not completed",
+    description: "Make a Dashboard using Tableau",
+  },
+  {
+    title: "Project Assessment - 3",
+    status: "not completed",
+    description: "Make a Dashboard using Excel",
+  },
+    {
+    title: "Project Assessment - 1",
+    status: "not completed",
+    description: "Make a Dashboard using powerBI",
+  },
+  {
+    title: "Project Assessment - 2",
+    status: "not completed",
+    description: "Make a Dashboard using Tableau",
+  },
+  {
+    title: "Project Assessment - 3",
+    status: "not completed",
+    description: "Make a Dashboard using Excel",
   },
 ];
 
 export default function OutlinedCard() {
   // Define consistent card dimensions
   const cardStyles = {
-    width: 300, // Set desired width
+    width: 350, // Set desired width
     height: 250, // Set desired height
     margin: 2, // Add margin between cards
     justifyContent: "space-between", // Aligns content to the end of the card
+    borderRadius: 7, // Rounds the corners
   };
 
   //   open and close the dilogue box
@@ -74,13 +105,13 @@ export default function OutlinedCard() {
               Status: {card.status}
             </Typography>
             <Typography variant="h6">Title: {card.description}</Typography>
+            {/* <ProgressBar now={40} style={{}}/> */}
           </CardContent>
           <CardActions>
-            <Button size="small" variant="contained" onClick={() => handleClickOpen(card)}> {/* card state is defined here passed here and defined  */}
+            <Button size="small" variant="contained" onClick={() => handleClickOpen(card)} sx={{background: 'rgb(116, 152, 253)',ml: 13}}> {/* card state is defined here passed here and defined  */}
               View Details
             </Button>
           </CardActions>
-          <ProgressBar now={40} style={{}}/>
         </Card>
       ))}
 

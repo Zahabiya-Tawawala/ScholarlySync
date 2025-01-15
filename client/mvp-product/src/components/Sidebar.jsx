@@ -1,5 +1,6 @@
 // components/Sidebar.jsx
-import React from 'react';
+import React from "react";
+import {Link} from "react-router-dom";
 import {
   Drawer,
   List,
@@ -9,22 +10,22 @@ import {
   ListItemButton,
   Divider,
   Box,
-} from '@mui/material';
+} from "@mui/material";
 import {
   Dashboard as DashboardIcon,
   Description as DescriptionIcon,
   People as PeopleIcon,
   Settings as SettingsIcon,
   Logout as LogoutIcon,
-} from '@mui/icons-material';
+} from "@mui/icons-material";
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const menuItems = [
-  { icon: <DashboardIcon />, label: 'Dashboard', active: true },
-  { icon: <DescriptionIcon />, label: 'Projects' },
-  { icon: <PeopleIcon />, label: 'Team' },
-  { icon: <SettingsIcon />, label: 'Settings' },
+  { icon: <DashboardIcon />, label: "Dashboard", active: true, path: "/" },
+  { icon: <DescriptionIcon />, label: "Projects" , path: "/ProjectAssessment"},
+  { icon: <PeopleIcon />, label: "Team" },
+  { icon: <SettingsIcon />, label: "Settings" },
 ];
 
 const Sidebar = ({ isOpen }) => {
@@ -36,40 +37,36 @@ const Sidebar = ({ isOpen }) => {
       sx={{
         width: drawerWidth,
         flexShrink: 0,
-        '& .MuiDrawer-paper': {
+        "& .MuiDrawer-paper": {
           width: drawerWidth,
-          boxSizing: 'border-box',
-          top: '64px',
-          height: 'calc(100vh - 64px)',
+          boxSizing: "border-box",
+          top: "56px",
+          height: "calc(100vh - 56px)",
+          background: 'linear-gradient(rgb(116, 152, 253), rgb(168, 127, 255))'
         },
       }}
     >
       <List>
         {menuItems.map((item, index) => (
-          <ListItem key={index} disablePadding>
+          <ListItem key={index} disablePadding component={Link} to={item.path}>
             <ListItemButton
-              selected={item.active}
-              sx={{
-                '&.Mui-selected': {
-                  backgroundColor: 'primary.light',
-                },
-              }}
+            //   selected={item.active}
             >
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.label} />
+              <ListItemIcon sx={{color: "white"}}>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} sx={{color: "white"}}/>
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-      
-      <Box sx={{ mt: 'auto' }}>
+
+      <Box sx={{ mt: "auto" }}>
         <Divider />
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <LogoutIcon />
+              <LogoutIcon sx={{color: "white"}}/>
             </ListItemIcon>
-            <ListItemText primary="Logout" />
+            <ListItemText primary="Logout" sx={{color: "white"}}/>
           </ListItemButton>
         </ListItem>
       </Box>
