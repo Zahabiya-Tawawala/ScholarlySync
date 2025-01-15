@@ -4,13 +4,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ProgressTracker from "./components/ProgressTracker";
 import ProjectAssessment from "./components/ProjectAssessment";
 import Dashboard from "./components/Dashboard";
-import NavbarComponent from "./components/NavbarComponent";
+import Navbar from "./components/Navbar";
+import { ThemeProvider, createTheme, CssBaseline, Paper, Typography, Grid } from '@mui/material';
+import Sidebar from './components/Sidebar';
+import Layout from './components/Layout';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <NavbarComponent/>
+        <Navbar/>
         <Routes>
           <Route path="/" element= {<Dashboard/>} />
           <Route path="/ProjectAssessment" element= {<ProjectAssessment/>} />
