@@ -28,11 +28,11 @@ const Dashboard = () => {
               color: "white",
             }}
           >
-            <Typography variant="h5">Current Project</Typography>
+            <Typography variant="h5">Continue Current Project</Typography>
             <Typography variant="h4" sx={{ fontWeight: "bold", mt: 1 }}>
               Project name
             </Typography>
-            <Typography sx={{ mt: 1 }}>Account No: 0019-0075-2727-xxxx</Typography>
+            <Typography sx={{ mt: 1 }}>status of the project: </Typography>
           </Card>
         </Grid>
 
