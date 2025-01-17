@@ -63,14 +63,14 @@ const Dashboard = () => {
         {/* Analytics and Income Section */}
         <Grid item xs={12} md={4}>
           <Card sx={{ padding: "20px", borderRadius: "15px" }}>
-            <Typography variant="h6">Analytics</Typography>
+            <Typography variant="h6">Activity </Typography>
            
           </Card>
         </Grid>
 
         <Grid item xs={12} md={4}>
           <Card sx={{ padding: "20px", borderRadius: "15px" }}>
-            <Typography variant="h6">+30,000 Income</Typography>
+            <Typography variant="h6">progress report completion projects </Typography>
            
           </Card>
         </Grid>
