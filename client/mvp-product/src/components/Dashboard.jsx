@@ -80,8 +80,9 @@ const Dashboard = () => {
                   height: "100px",
                   margin: "auto",
                 }}
+                src='http://images4.fanpop.com/image/photos/22500000/Itachi-itachi-uchiha-22583403-1280-800.jpg'
               />
-              <Typography variant="h6">Panji Satrya</Typography>
+              <Typography variant="h6">Itachi Uchiha</Typography>
               <Typography variant="body2" color="text.secondary">
                 PRO Account
               </Typography>
