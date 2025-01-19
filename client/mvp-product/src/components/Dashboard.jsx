@@ -10,72 +10,89 @@ const Dashboard = () => {
 
   return (
     <>
-       <Box
-      sx={{
-        minHeight: "100vh",
-        padding: "10px",
-      }}
-    >
-      {/* Main Grid Layout */}
-      <Grid container spacing={3}>
-        {/* Current Balance Section */}
-        <Grid item xs={12} md={8}>
-          <Card
-            sx={{
-              padding: "20px",
-              borderRadius: "15px",
-              background: "linear-gradient(to right, #8a7af3, #a37ef5)",
-              color: "white",
-            }}
-          >
-            <Typography variant="h5">Continue Current Project</Typography>
-            <Typography variant="h4" sx={{ fontWeight: "bold", mt: 1 }}>
-              Project name
-            </Typography>
-            <Typography sx={{ mt: 1 }}>status of the project: </Typography>
-          </Card>
-        </Grid>
-
-        {/* Profile Section */}
-        <Grid item xs={12} md={4}>
-          <Card sx={{ padding: "20px", borderRadius: "15px", textAlign: "center", height: 500 }}>
-            <Avatar
+      <Box
+        sx={{
+          minHeight: "100vh",
+          padding: "10px",
+        }}
+      >
+        {/* Main Grid Layout */}
+        <Grid container spacing={3}>
+          {/* Current Balance Section */}
+          <Grid item xs={12} md={8}>
+            <Card
               sx={{
+                padding: "20px",
+                borderRadius: "15px",
+                background: "linear-gradient(to right, #8a7af3, #a37ef5)",
+                color: "white",
+              }}
+            >
+              <Typography variant="h5">Continue Current Project</Typography>
+              <Typography variant="h4" sx={{ fontWeight: "bold", mt: 1 }}>
+                Project name
+              </Typography>
+              <Typography sx={{ mt: 1 }}>status of the project: </Typography>
+            </Card>
+          </Grid>
+
+          {/* Profile Section */}
+          <Grid item xs={12} md={4}>
+            <Card
+              sx={{
+                padding: "20px",
+                borderRadius: "15px",
+                textAlign: "center",
+                height: 500,
+              }}
+            >
+              <Avatar
+                sx={{
+                  width: "80px",
+                  height: "80px",
+                  margin: "auto",
+                }}
+              />
+              <Typography variant="h6">Panji Satrya</Typography>
+              <Typography variant="body2" color="text.secondary">
+                PRO Account
+              </Typography>
+              <Button
+                variant="contained"
+                sx={{
+                  mt: 2,
+                  background: "#8a7af3",
+                  ":hover": { background: "#7a6ae4" },
+                }}
+              >
+                View all Scores and Projects
+              </Button>
+            </Card>
+          </Grid>
+
+          {/* Analytics and Income Section */}
+          <Grid item xs={12} md={4}>
+            <Card
+              sx={{
+                borderRadius: "15px",
                 width: "80px",
                 height: "80px",
                 margin: "auto",
-                mb: 2,
               }}
-            />
-            <Typography variant="h6">Panji Satrya</Typography>
-            <Typography variant="body2" color="text.secondary">
-              PRO Account
-            </Typography>
-            <Button
-              variant="contained"
-              sx={{ mt: 2, background: "#8a7af3", ":hover": { background: "#7a6ae4" } }}
             >
-              View Full Profile
-            </Button>
-          </Card>
-        </Grid>
+              <Typography variant="h6">Activity </Typography>
+            </Card>
+          </Grid>
 
-        {/* Analytics and Income Section */}
-        <Grid item xs={12} md={4}>
-          <Card sx={{ padding: "20px", borderRadius: "15px" }}>
-            <Typography variant="h6">Activity </Typography>
-           
-          </Card>
+          <Grid item xs={12} md={4}>
+            <Card sx={{ borderRadius: "15px" }}>
+              <Typography variant="h6">
+                progress report completion projects{" "}
+              </Typography>
+            </Card>
+          </Grid>
         </Grid>
-
-        <Grid item xs={12} md={4}>
-          <Card sx={{ padding: "20px", borderRadius: "15px" }}>
-            <Typography variant="h6">progress report completion projects </Typography>
-           
-          </Card>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
     </>
   );
 };
