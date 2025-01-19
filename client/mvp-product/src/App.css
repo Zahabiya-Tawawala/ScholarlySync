@@ -1,0 +1,15 @@
+/* grid layout */
+/* 
+.parent {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 20px;
+  justify-content: center;
+}
+
+.child {
+  width: 300px;
+  height: 400px;
+}
+*/

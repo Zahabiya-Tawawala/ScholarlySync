@@ -13,7 +13,7 @@ const Dashboard = () => {
       <Box
         sx={{
           minHeight: "100vh",
-          padding: "10px",
+          padding: "20px",
         }}
       >
         {/* Main Grid Layout */}
@@ -34,6 +34,38 @@ const Dashboard = () => {
               </Typography>
               <Typography sx={{ mt: 1 }}>status of the project: </Typography>
             </Card>
+
+            {/* Activity and progress section */}
+            <Grid container spacing={3} sx={{ mt: 3 }}>
+              <Grid item xs={12} md={4}>
+                <Card
+                  sx={{
+                    borderRadius: "15px",
+                    width: 280,
+                    height: 180,
+                    padding: "20px",
+                    margin: "auto"
+                  }}
+                >
+                  <Typography variant="h6">Activity </Typography>
+                </Card>
+              </Grid>
+
+              <Grid item xs={12} md={4}>
+                <Card
+                  sx={{
+                    width: 280,
+                    height: 180,
+                    margin: "auto",
+                    borderRadius: "15px",
+                  }}
+                >
+                  <Typography variant="h6">
+                    progress report completion projects{" "}
+                  </Typography>
+                </Card>
+              </Grid>
+            </Grid>
           </Grid>
 
           {/* Profile Section */}
@@ -67,28 +99,6 @@ const Dashboard = () => {
               >
                 View all Scores and Projects
               </Button>
-            </Card>
-          </Grid>
-
-          {/* Analytics and Income Section */}
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{
-                borderRadius: "15px",
-                width: "80px",
-                height: "80px",
-                margin: "auto",
-              }}
-            >
-              <Typography variant="h6">Activity </Typography>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Card sx={{ borderRadius: "15px" }}>
-              <Typography variant="h6">
-                progress report completion projects{" "}
-              </Typography>
             </Card>
           </Grid>
         </Grid>
