@@ -5,8 +5,6 @@ import Grid from "@mui/material/Grid2";
 // import { Doughnut } from "react-chartjs-2";
 
 const Dashboard = () => {
-  const avatarStyle = { width: 250, height: 250, margin: 5 };
-  const infoBoxStyle = { textAlign: "center", margin: 15 };
 
   return (
     <>
@@ -18,8 +16,8 @@ const Dashboard = () => {
       >
         {/* Main Grid Layout */}
         <Grid container spacing={3}>
-          {/* Current Balance Section */}
           <Grid item xs={12} md={8}>
+            {/* Continue Current Project section */}
             <Card
               sx={{
                 padding: "20px",
@@ -42,12 +40,12 @@ const Dashboard = () => {
                   sx={{
                     borderRadius: "15px",
                     width: 280,
-                    height: 180,
+                    height: 280,
                     padding: "20px",
-                    margin: "auto"
+                    margin: "auto",
                   }}
                 >
-                  <Typography variant="h6">Activity </Typography>
+                  <Typography variant="h6">Activity - Weekly</Typography>
                 </Card>
               </Grid>
 
@@ -55,13 +53,14 @@ const Dashboard = () => {
                 <Card
                   sx={{
                     width: 280,
-                    height: 180,
+                    height: 280,
                     margin: "auto",
                     borderRadius: "15px",
+                    padding: "20px",
                   }}
                 >
                   <Typography variant="h6">
-                    progress report completion projects{" "}
+                    Progress Report - Completion Projects
                   </Typography>
                 </Card>
               </Grid>
@@ -75,7 +74,7 @@ const Dashboard = () => {
                 padding: "20px",
                 borderRadius: "15px",
                 textAlign: "center",
-                height: 500,
+                height: 600,
               }}
             >
               <Avatar
