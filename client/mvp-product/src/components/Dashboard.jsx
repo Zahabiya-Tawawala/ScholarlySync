@@ -8,12 +8,6 @@ const Dashboard = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          minHeight: "100vh",
-          padding: "20px",
-        }}
-      >
         {/* Main Grid Layout */}
         <Grid container spacing={3}>
           <Grid item xs={12} md={8}>
@@ -24,6 +18,8 @@ const Dashboard = () => {
                 borderRadius: "15px",
                 background: "linear-gradient(to right, #8a7af3, #a37ef5)",
                 color: "white",
+                width: 790,
+                height: 200,
               }}
             >
               <Typography variant="h5">Continue Current Project</Typography>
@@ -39,8 +35,8 @@ const Dashboard = () => {
                 <Card
                   sx={{
                     borderRadius: "15px",
-                    width: 280,
-                    height: 280,
+                    width: 385,
+                    height: 375,
                     padding: "20px",
                     margin: "auto",
                   }}
@@ -52,8 +48,8 @@ const Dashboard = () => {
               <Grid item xs={12} md={4}>
                 <Card
                   sx={{
-                    width: 280,
-                    height: 280,
+                    width: 385,
+                    height: 375,
                     margin: "auto",
                     borderRadius: "15px",
                     padding: "20px",
@@ -71,16 +67,17 @@ const Dashboard = () => {
           <Grid item xs={12} md={4}>
             <Card
               sx={{
-                padding: "20px",
+                padding: "30px",
                 borderRadius: "15px",
                 textAlign: "center",
                 height: 600,
+                width: 350,
               }}
             >
               <Avatar
                 sx={{
-                  width: "80px",
-                  height: "80px",
+                  width: "100px",
+                  height: "100px",
                   margin: "auto",
                 }}
               />
@@ -101,7 +98,6 @@ const Dashboard = () => {
             </Card>
           </Grid>
         </Grid>
-      </Box>
     </>
   );
 };
