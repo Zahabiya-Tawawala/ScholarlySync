@@ -119,7 +119,7 @@ export default Dashboard;
 //     src="http://images4.fanpop.com/image/photos/22500000/Itachi-itachi-uchiha-22583403-1280-800.jpg"
 //     sx={avatarStyle}
 //   />
-//   <Box sx={infoBoxStylerewshwh5whhw}>
+//   <Box sx={infoBoxStyle}>
 //     <Typography variant="h5" gutterBottom>
 //       Name: Itachi Uchiha
 //     </Typography>
