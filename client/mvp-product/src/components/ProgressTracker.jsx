@@ -4,7 +4,7 @@ const ProgressTracker = () => {
   return (
     <div>
       this is Progress Tracker
-      {/* djfklje pooejhgrfaerfkau pfepofk */}
+      {/* AMATULLA didnt do daily commits T0T */}
     </div>
   )
 }
