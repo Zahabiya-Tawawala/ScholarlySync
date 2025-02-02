@@ -88,8 +88,10 @@ export default function OutlinedCard() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleSubmit = () => {
 
-  return (
+  }
+    return (
     <Box
       sx={{
         marginTop: 1,
@@ -129,9 +131,6 @@ export default function OutlinedCard() {
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>
             {selectedCard.title}
-            <IconButton onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
           </DialogTitle>
           <DialogContent>
             <Typography>Title: {selectedCard.description}</Typography>
@@ -149,6 +148,7 @@ export default function OutlinedCard() {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleSubmit}>Submit</Button>
           </DialogActions>
         </Dialog>
       )}
