@@ -12,8 +12,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { TextField } from "@mui/material";
 // import LinearProgress from '@mui/material/LinearProgress'
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 const cardData = [
   {
@@ -46,7 +47,7 @@ const cardData = [
     status: "not completed",
     description: "Make a Dashboard using Excel",
   },
-    {
+  {
     title: "Project Assessment - 1",
     status: "not completed",
     description: "Make a Dashboard using powerBI",
@@ -78,7 +79,8 @@ export default function OutlinedCard() {
   const [open, setOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
 
-  const handleClickOpen = (card) => {   // card state is defined here it was showing error before cause it was not defined passed as a function parameter
+  const handleClickOpen = (card) => {
+    // card state is defined here it was showing error before cause it was not defined passed as a function parameter
     setSelectedCard(card);
     setOpen(true);
   };
@@ -108,7 +110,14 @@ export default function OutlinedCard() {
             {/* <ProgressBar now={40} style={{}}/> */}
           </CardContent>
           <CardActions>
-            <Button size="small" variant="contained" onClick={() => handleClickOpen(card)} sx={{background: 'rgb(116, 152, 253)',ml: 13}}> {/* card state is defined here passed here and defined  */}
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => handleClickOpen(card)}
+              sx={{ background: "rgb(116, 152, 253)", ml: 13 }}
+            >
+              {" "}
+              {/* card state is defined here passed here and defined  */}
               View Details
             </Button>
           </CardActions>
@@ -128,15 +137,21 @@ export default function OutlinedCard() {
             <Typography>Title: {selectedCard.description}</Typography>
             <Typography>Status: {selectedCard.status}</Typography>
             <Typography>project github link</Typography>
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+            />
             <Typography>project video link</Typography>
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Close</Button>
           </DialogActions>
         </Dialog>
       )}
-
-
     </Box>
   );
 }
