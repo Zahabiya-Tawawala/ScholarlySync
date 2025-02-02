@@ -127,6 +127,8 @@ export default function OutlinedCard() {
           <DialogContent>
             <Typography>Title: {selectedCard.description}</Typography>
             <Typography>Status: {selectedCard.status}</Typography>
+            <Typography>project github link</Typography>
+            <Typography>project video link</Typography>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Close</Button>
