@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
+const dotenv = require("dotenv").config();
+const dbconnection = require("./db");
+
+// Connect to the database
+dbconnection();
 
 // Middleware (for parsing JSON)
 app.use(express.json());
@@ -11,6 +15,8 @@ app.get("/", (req, res) => {
 });
 
 // Start the server
+const PORT = process.env.PORT; 
+
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on PORT ${PORT}`);
 });
