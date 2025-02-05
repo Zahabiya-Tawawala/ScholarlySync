@@ -7,7 +7,7 @@ app.use(express.json());
 
 // Sample route
 app.get("/", (req, res) => {
-    res.send("Hello, Node.js Backend!");
+    res.send("Hello, This is Zahabiya's Mini Project");
 });
 
 // Start the server
