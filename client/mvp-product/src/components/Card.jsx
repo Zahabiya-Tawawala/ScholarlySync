@@ -31,7 +31,6 @@ export default function OutlinedCard() {
   //   open and close the dilogue box
 
   const [open, setOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null);
 
   const handleClickOpen = (card) => {
     // card state is defined here it was showing error before cause it was not defined passed as a function parameter
@@ -46,6 +45,7 @@ export default function OutlinedCard() {
   }
 
   // Fetch data from the server
+  const [selectedCard, setSelectedCard] = useState(null);
   const [cardData, setCardData] = useState([]);
   useEffect(() => {
     axios
