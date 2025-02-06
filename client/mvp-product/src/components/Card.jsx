@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -13,56 +13,10 @@ import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { TextField } from "@mui/material";
+import axios from "axios";
 // import LinearProgress from '@mui/material/LinearProgress'
-import ProgressBar from "react-bootstrap/ProgressBar";
+// import ProgressBar from "react-bootstrap/ProgressBar";
 
-const cardData = [
-  {
-    title: "Project Assessment - 1",
-    status: "not completed",
-    description: "Make a Dashboard using powerBI",
-  },
-  {
-    title: "Project Assessment - 2",
-    status: "not completed",
-    description: "Make a Dashboard using Tableau",
-  },
-  {
-    title: "Project Assessment - 3",
-    status: "not completed",
-    description: "Make a Dashboard using Excel",
-  },
-  {
-    title: "Project Assessment - 1",
-    status: "not completed",
-    description: "Make a Dashboard using powerBI",
-  },
-  {
-    title: "Project Assessment - 2",
-    status: "not completed",
-    description: "Make a Dashboard using Tableau",
-  },
-  {
-    title: "Project Assessment - 3",
-    status: "not completed",
-    description: "Make a Dashboard using Excel",
-  },
-  {
-    title: "Project Assessment - 1",
-    status: "not completed",
-    description: "Make a Dashboard using powerBI",
-  },
-  {
-    title: "Project Assessment - 2",
-    status: "not completed",
-    description: "Make a Dashboard using Tableau",
-  },
-  {
-    title: "Project Assessment - 3",
-    status: "not completed",
-    description: "Make a Dashboard using Excel",
-  },
-];
 
 export default function OutlinedCard() {
   // Define consistent card dimensions
@@ -90,6 +44,21 @@ export default function OutlinedCard() {
   };
   const handleSubmit = () => {
   }
+
+  // Fetch data from the server
+  const [cardData, setCardData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/projectCards")
+      .then((response) => {
+        setCardData(response.data);
+      })
+      .catch((error) => {
+        console.log("error in fetching data: ",error);
+      });
+  } , []);
+
+
     return (
     <Box
       sx={{
@@ -98,8 +67,8 @@ export default function OutlinedCard() {
         flexWrap: "wrap", // Allows cards to wrap on smaller screens
       }}
     >
-      {cardData.map((card, index) => (
-        <Card key={index} variant="outlined" sx={cardStyles}>
+      {cardData.map((card, id) => (
+        <Card key={id} variant="outlined" sx={cardStyles}>
           <CardContent>
             <Typography variant="h5" component="div">
               {card.title}
@@ -154,3 +123,64 @@ export default function OutlinedCard() {
     </Box>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const cardData = [
+//   {
+//     title: "Project Assessment - 1",
+//     status: "not completed",
+//     description: "Make a Dashboard using powerBI",
+//   },
+//   {
+//     title: "Project Assessment - 2",
+//     status: "not completed",
+//     description: "Make a Dashboard using Tableau",
+//   },
+//   {
+//     title: "Project Assessment - 3",
+//     status: "not completed",
+//     description: "Make a Dashboard using Excel",
+//   },
+//   {
+//     title: "Project Assessment - 1",
+//     status: "not completed",
+//     description: "Make a Dashboard using powerBI",
+//   },
+//   {
+//     title: "Project Assessment - 2",
+//     status: "not completed",
+//     description: "Make a Dashboard using Tableau",
+//   },
+//   {
+//     title: "Project Assessment - 3",
+//     status: "not completed",
+//     description: "Make a Dashboard using Excel",
+//   },
+//   {
+//     title: "Project Assessment - 1",
+//     status: "not completed",
+//     description: "Make a Dashboard using powerBI",
+//   },
+//   {
+//     title: "Project Assessment - 2",
+//     status: "not completed",
+//     description: "Make a Dashboard using Tableau",
+//   },
+//   {
+//     title: "Project Assessment - 3",
+//     status: "not completed",
+//     description: "Make a Dashboard using Excel",
+//   },
+// ];
