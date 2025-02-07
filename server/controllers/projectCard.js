@@ -12,9 +12,17 @@ const getProjectCards = async (req, res) => {
 };
 
 // Create a new project card
+const createProjectCard = async(req, res) => {
+  try {
+    const pool = await dbconnection()
+    const {title, description, status} = req.body;
+    const [rows] = await pool.query("INSERT INTO projects (title, description, status) VALUES (?, ?, ?)", [title, description, status]);
+    res.status(201).json({id: rows.insertId, title, description, status});
+  }
+  catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 
-
-
-
-module.exports = { getProjectCards };
+module.exports = { getProjectCards, createProjectCard };
 
