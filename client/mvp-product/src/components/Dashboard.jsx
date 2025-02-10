@@ -24,9 +24,9 @@ const Dashboard = () => {
             >
               <Typography variant="h5">Continue Current Project</Typography>
               <Typography variant="h4" sx={{ fontWeight: "bold", mt: 1 }}>
-                Project name
+                Make a Simple Website
               </Typography>
-              <Typography sx={{ mt: 1 }}>status of the project: </Typography>
+              <Typography sx={{ mt: 1 }}>status of the project: not completed</Typography>
             </Card>
 
             {/* Activity and progress section */}
