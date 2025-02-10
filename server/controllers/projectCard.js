@@ -12,7 +12,7 @@ const getProjectCards = async (req, res) => {
 };
 
 // Create a new project card
-const createProjectCard = async(req, res) => {
+const createProjectCards = async(req, res) => {
   try {
     const pool = await dbconnection()
     const {title, description, status} = req.body;
@@ -20,6 +20,7 @@ const createProjectCard = async(req, res) => {
     res.status(201).json({id: rows.insertId, title, description, status});
   }
   catch (error) {
+    console.error("Error creating project card: ", error); 
     res.status(500).json({ error: error.message });
   }
 }
@@ -27,5 +28,5 @@ const createProjectCard = async(req, res) => {
 // link submission function 
 
 
-module.exports = { getProjectCards, createProjectCard };
+module.exports = { getProjectCards, createProjectCards };
 

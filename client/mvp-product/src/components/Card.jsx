@@ -49,7 +49,7 @@ export default function OutlinedCard() {
   const [cardData, setCardData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/projectCards")
+      .get("http://localhost:5000/api/projectCards")
       .then((response) => {
         setCardData(response.data);
       })

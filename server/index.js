@@ -4,7 +4,6 @@ const dotenv = require("dotenv").config();
 const dbconnection = require("./db");
 const cors = require("cors");
 const projectCardRoutes = require("./routes/projectCardRoutes");
-
 // Connect to the database
 dbconnection();
 
@@ -23,9 +22,9 @@ app.get("/", (req, res) => {
 app.use("/api", projectCardRoutes);
 
 // Start the server
-const PORT = process.env.PORT; 
+const PORT = process.env.PORT || 5000; 
 
 app.listen(PORT, () => {
     console.log(`Server running on PORT ${PORT}`);
 });
-// //
+///
