@@ -1,55 +1,37 @@
-# Mini Project: CRUD Operations with Node.js, Express, and MySQL
+# Scholarly Sync
 
-This project is a simple CRUD application to practice working with APIs, MySQL, and Express.js.
+## 📌 Overview
+Scholarly Sync is a web platform designed to streamline the management of student projects, making submissions easier for students and reviews more efficient for educators. By integrating GitHub and video submissions, it ensures a structured and transparent workflow for academic collaboration.
 
-## Features
+## 🚀 Features
 
-- **API Integration**: Implements basic CRUD (Create, Read, Update, Delete) operations.
-- **Database**: Uses MySQL to store and manage data.
-- **Backend Framework**: Built with Node.js and Express.js.
+### 🔹 For Educators
+- Easily **post projects** and define submission criteria.
+- Manage student submissions from a **centralized dashboard**.
+- Review GitHub repositories and video links directly from the platform.
+- Provide **grades and feedback** efficiently.
 
-## Prerequisites
+### 🔹 For Students
+- Submit projects via **GitHub repo** and **video link**.
+- Track progress and receive real-time updates on submissions.
+- View grades and feedback from educators.
 
-- Node.js installed
-- MySQL database setup
+## 🔜 Upcoming Features
+- **Educator Panel**: Professors will be able to update project requirements, grade submissions, and provide direct feedback.
+- **Student Dashboard Enhancements**: Improved UI for tracking progress and receiving notifications.
 
-## Installation
+## 🛠️ Tech Stack
+- **Frontend**: React.js
+- **Backend**: Node.js, Express.js
+- **Database**: MySQL via xampp
+- **Authentication**: JWT
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-repo/Mini-project.git
-   cd Mini-Project
-   ```
+## 🔗 Project Links
+- **GitHub Repo**: [https://github.com/YourUsername/ScholarlySync](https://github.com/YourUsername/ScholarlySync)
+- **Live Demo**: [[scholarly-sync.vercel.app](https://scholarly-sync.vercel.app/)]
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+## 📧 Contact
+For any questions or feedback, feel free to reach out!
 
-3. Set up the database:
-   - Create a MySQL database.
-   - Import the provided SQL file or create necessary tables.
-
-4. Start the server:
-   ```bash
-   node app.js
-   ```
-
-## Endpoints
-
-- **Create**: Add new data to the database.
-- **Read**: Fetch data from the database.
-- **Update**: Modify existing data.
-- **Delete**: Remove data from the database.
-
-## File Structure(will change as project progresses)
-
-```
-src/
-  routes/
-    api.js         # Defines API endpoints
-  app.js           # Main server file
-  db.js            # Database connection setup
-```
-
-
+---
+Let's make academic project management more efficient! 🚀
