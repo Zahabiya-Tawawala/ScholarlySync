@@ -27,7 +27,7 @@ Scholarly Sync is a web platform designed to streamline the management of studen
 - **Authentication**: JWT
 
 ## 🔗 Project Links
-- **GitHub Repo**: [https://github.com/YourUsername/ScholarlySync](https://github.com/YourUsername/ScholarlySync)
+- **GitHub Repo**: [https://github.com/Zahabiya-Tawawala/ScholarlySync](https://github.com/Zahabiya-Tawawala/ScholarlySync)
 - **Live Demo**: [[scholarly-sync.vercel.app](https://scholarly-sync.vercel.app/)]
 
 ## 📧 Contact
