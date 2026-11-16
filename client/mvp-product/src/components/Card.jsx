@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 import { TextField } from "@mui/material";
 import axios from "axios";
 // import LinearProgress from '@mui/material/LinearProgress'
 // import ProgressBar from "react-bootstrap/ProgressBar";
 
 export default function OutlinedCard() {
-  // Define consistent card dimensions
   const cardStyles = {
-    width: 350, // Set desired width
-    height: 250, // Set desired height
-    margin: 2, // Add margin between cards
-    justifyContent: "space-between", // Aligns content to the end of the card
+    width: { xs: "calc(100% - 32px)", sm: 350 },
+    minHeight: 250,
+    margin: 2,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
     borderRadius: 7, // Rounds the corners
   };
 
@@ -91,10 +89,11 @@ export default function OutlinedCard() {
       sx={{
         marginTop: 1,
         display: "flex",
-        flexWrap: "wrap", // Allows cards to wrap on smaller screens
+        flexWrap: "wrap",
+        justifyContent: { xs: "center", sm: "flex-start" },
       }}
     >
-      {cardData.map((card, id) => (
+      {cardData.map((card) => (
         <Card key={card.id} variant="outlined" sx={cardStyles}>
           <CardContent>
             <Typography variant="h5" component="div">
@@ -112,7 +111,7 @@ export default function OutlinedCard() {
               variant="contained"
               onClick={() => handleClickOpen(card)}
               disabled = {card.status === 'completed'}
-              sx={{ background: "rgb(116, 152, 253)", ml: 13 }}
+              sx={{ background: "rgb(116, 152, 253)", ml: "auto" }}
             >
               {card.status === 'completed' ? "Completed" : "View Details"}
             </Button>
@@ -122,7 +121,7 @@ export default function OutlinedCard() {
 
       {/* dialogue box component */}
       {selectedCard && (
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
           <DialogTitle>{selectedCard.title}</DialogTitle>
           <DialogContent>
             <Typography>Title: {selectedCard.description}</Typography>
@@ -131,6 +130,7 @@ export default function OutlinedCard() {
             <TextField
               id="github_link"
               variant="outlined"
+              fullWidth
               value={enteredGithubLink}
               onChange={(e) => setEnteredGithubLink(e.target.value)}
             />
@@ -138,6 +138,7 @@ export default function OutlinedCard() {
             <TextField
               id="video_link"
               variant="outlined"
+              fullWidth
               value={enteredVideoLink}
               onChange={(e) => setEnteredVideoLink(e.target.value)}
             />

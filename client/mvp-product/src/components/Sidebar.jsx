@@ -1,5 +1,4 @@
 // components/Sidebar.jsx
-import React from "react";
 import {Link} from "react-router-dom";
 import {
   Drawer,
@@ -28,17 +27,19 @@ const menuItems = [
   { icon: <SettingsIcon />, label: "Settings" },
 ];
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, isMobile, onClose }) => {
   return (
     <Drawer
-      variant="persistent"
+      variant={isMobile ? "temporary" : "persistent"}
       anchor="left"
       open={isOpen}
+      onClose={onClose}
+      ModalProps={{ keepMounted: true }}
       sx={{
         width: drawerWidth,
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: drawerWidth,
+          width: { xs: "min(300px, calc(100vw - 56px))", sm: drawerWidth },
           boxSizing: "border-box",
           top: "56px",
           height: "calc(100vh - 56px)",
@@ -48,7 +49,13 @@ const Sidebar = ({ isOpen }) => {
     >
       <List>
         {menuItems.map((item, index) => (
-          <ListItem key={index} disablePadding component={Link} to={item.path}>
+          <ListItem
+            key={index}
+            disablePadding
+            component={Link}
+            to={item.path}
+            onClick={isMobile ? onClose : undefined}
+          >
             <ListItemButton
             //   selected={item.active}
             >

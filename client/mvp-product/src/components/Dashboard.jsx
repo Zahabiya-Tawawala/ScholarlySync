@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, Card, Typography, Button, Avatar } from "@mui/material";
+import { Card, Typography, Button, Avatar } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { LineChart } from "@mui/x-charts/LineChart";
@@ -10,17 +9,17 @@ const Dashboard = () => {
   return (
     <>
       {/* Main Grid Layout */}
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={8}>
+      <Grid container spacing={3} sx={{ minWidth: 0 }}>
+        <Grid size={{ xs: 12, lg: 8 }} sx={{ minWidth: 0 }}>
           {/* Continue Current Project section */}
           <Card
             sx={{
-              padding: "20px",
+              p: { xs: 2, sm: 3 },
               borderRadius: "15px",
               background: "linear-gradient(to right, #8a7af3, #a37ef5)",
               color: "white",
-              width: 790,
-              height: 200,
+              width: "100%",
+              minHeight: 200,
             }}
           >
             <Typography variant="h5">Continue Current Project</Typography>
@@ -33,15 +32,14 @@ const Dashboard = () => {
           </Card>
 
           {/* Activity and progress section */}
-          <Grid container spacing={3} sx={{ mt: 3 }}>
-            <Grid item xs={12} md={4}>
+          <Grid container spacing={3} sx={{ mt: 3, minWidth: 0 }}>
+            <Grid size={{ xs: 12, md: 6 }} sx={{ minWidth: 0 }}>
               <Card
                 sx={{
                   borderRadius: "15px",
-                  width: 385,
-                  height: 375,
-                  padding: "20px",
-                  margin: "auto",
+                  width: "100%",
+                  minHeight: 375,
+                  p: { xs: 2, sm: 2.5 },
                 }}
               >
                 <Typography variant="h6">Activity - Weekly</Typography>
@@ -53,20 +51,19 @@ const Dashboard = () => {
                       data: [2, 5.5, 2, 8.5, 1.5, 5, 3],
                     },
                   ]}
-                  width={350}
                   height={300}
+                  sx={{ width: "100%" }}
                 />
               </Card>
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid size={{ xs: 12, md: 6 }} sx={{ minWidth: 0 }}>
               <Card
                 sx={{
-                  width: 385,
-                  height: 375,
-                  margin: "auto",
+                  width: "100%",
+                  minHeight: 375,
                   borderRadius: "15px",
-                  padding: "20px",
+                  p: { xs: 2, sm: 2.5 },
                 }}
               >
                 <Typography variant="h6">
@@ -82,8 +79,8 @@ const Dashboard = () => {
                       ],
                     },
                   ]}
-                  width={350}
                   height={200}
+                  sx={{ width: "100%" }}
                 />
               </Card>
             </Grid>
@@ -91,14 +88,14 @@ const Dashboard = () => {
         </Grid>
 
         {/* Profile Section */}
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, lg: 4 }} sx={{ minWidth: 0 }}>
           <Card
             sx={{
-              padding: "30px",
+              p: { xs: 3, sm: 4 },
               borderRadius: "15px",
               textAlign: "center",
-              height: 600,
-              width: 350,
+              width: "100%",
+              minHeight: { lg: 375 },
             }}
           >
             <Avatar
@@ -119,6 +116,7 @@ const Dashboard = () => {
                 mt: 2,
                 background: "#8a7af3",
                 ":hover": { background: "#7a6ae4" },
+                maxWidth: "100%",
               }}
             >
               View all Scores and Projects

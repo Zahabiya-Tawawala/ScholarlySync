@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   AppBar,
   Toolbar,
@@ -13,8 +12,7 @@ import {
 import {
   Menu as MenuIcon,
   Search as SearchIcon,
-  Notifications as NotificationsIcon,
-  ArrowDropDown
+  Notifications as NotificationsIcon
 } from '@mui/icons-material';
 
 const Search = styled('div')(({ theme }) => ({
@@ -24,12 +22,13 @@ const Search = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: 'rgba(255, 255, 255, 0.25)',
   },
-  marginRight: theme.spacing(2),
+  marginRight: theme.spacing(1),
   marginLeft: 0,
-  width: '100%',
+  flexGrow: 1,
+  minWidth: 0,
+  maxWidth: 560,
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
+    marginLeft: theme.spacing(2),
   },
 }));
 
@@ -45,22 +44,25 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
+  width: '100%',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     width: '100%',
+    minWidth: 0,
   },
 }));
 
 const Navbar = ({ toggleSidebar }) => {
   return (
-    <AppBar position="fixed" sx={{ boxShadow: 'none',zIndex: (theme) => theme.zIndex.drawer + 1 , background: 'linear-gradient(rgb(116, 152, 253), rgb(168, 127, 255))'}} >
-      <Toolbar>
+    <AppBar position="fixed" sx={{ boxShadow: 'none', zIndex: (theme) => theme.zIndex.drawer + 1, background: 'linear-gradient(rgb(116, 152, 253), rgb(168, 127, 255))' }}>
+      <Toolbar sx={{ gap: { xs: 0, sm: 1 }, px: { xs: 1, sm: 2 } }}>
         <IconButton
           color="inherit"
           edge="start"
           onClick={toggleSidebar}
-          sx={{ mr: 2 }}
+          sx={{ mr: { xs: 0.5, sm: 1 }, flexShrink: 0 }}
+          aria-label="Toggle navigation"
         >
           <MenuIcon />
         </IconButton>
@@ -81,7 +83,7 @@ const Navbar = ({ toggleSidebar }) => {
 
         <Box sx={{ flexGrow: 1 }} />
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 2 }, flexShrink: 0 }}>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="error">
               <NotificationsIcon />
