@@ -108,7 +108,7 @@ const Dashboard = () => {
             />
             <Typography variant="h6">Itachi Uchiha</Typography>
             <Typography variant="body2" color="text.secondary">
-              PRO Account
+              Student Account
             </Typography>
             <Button
               variant="contained"

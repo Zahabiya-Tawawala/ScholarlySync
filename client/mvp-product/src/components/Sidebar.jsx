@@ -16,13 +16,15 @@ import {
   People as PeopleIcon,
   Settings as SettingsIcon,
   Logout as LogoutIcon,
+  Timeline as TimelineIcon,
 } from "@mui/icons-material";
 
 const drawerWidth = 300;
 
 const menuItems = [
-  { icon: <DashboardIcon />, label: "Dashboard", active: true, path: "/" },
-  { icon: <DescriptionIcon />, label: "Projects" , path: "/ProjectAssessment"},
+  { icon: <DashboardIcon />, label: "Dashboard", active: true, path: "/student" },
+  { icon: <DescriptionIcon />, label: "Projects", path: "/student/project-assessment" },
+  { icon: <TimelineIcon />, label: "Progress", path: "/student/progress-tracker" },
   { icon: <PeopleIcon />, label: "Team" },
   { icon: <SettingsIcon />, label: "Settings" },
 ];
