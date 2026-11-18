@@ -8,12 +8,12 @@ import {
   Button,
   Card,
   CardContent,
-  Chip,
   Grid,
   Stack,
   Typography,
 } from "@mui/material";
 import { useProjects } from "./ProjectsContext";
+import ProfessorProjectCard from "./ProfessorProjectCard";
 
 const ProfessorProjects = () => {
   const { projects } = useProjects();
@@ -59,44 +59,7 @@ const ProfessorProjects = () => {
         <Grid container spacing={2}>
           {projects.map((project) => (
             <Grid item xs={12} sm={6} lg={4} key={project.id}>
-              <Card sx={{ height: "100%", borderRadius: 3 }}>
-                <CardContent>
-                  <Chip
-                    label={project.course}
-                    size="small"
-                    color="primary"
-                    variant="outlined"
-                    sx={{ mb: 1 }}
-                  />
-                  <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                    {project.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ mt: 1, whiteSpace: "pre-wrap" }}
-                  >
-                    {project.description}
-                  </Typography>
-                  {project.requirements && (
-                    <Typography
-                      variant="body2"
-                      sx={{ mt: 2, whiteSpace: "pre-wrap" }}
-                    >
-                      <strong>Requirements:</strong> {project.requirements}
-                    </Typography>
-                  )}
-                  {project.dueDate && (
-                    <Typography
-                      variant="caption"
-                      color="text.secondary"
-                      sx={{ display: "block", mt: 2 }}
-                    >
-                      Due {project.dueDate}
-                    </Typography>
-                  )}
-                </CardContent>
-              </Card>
+              <ProfessorProjectCard project={project} />
             </Grid>
           ))}
         </Grid>

@@ -3,7 +3,6 @@ import {
   Add as AddIcon,
   CalendarMonth as CalendarIcon,
   FolderOpen as FolderIcon,
-  School as SchoolIcon,
 } from "@mui/icons-material";
 import {
   Alert,
@@ -11,7 +10,6 @@ import {
   Button,
   Card,
   CardContent,
-  Chip,
   Grid,
   Snackbar,
   Stack,
@@ -19,6 +17,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useProjects } from "./ProjectsContext";
+import ProfessorProjectCard from "./ProfessorProjectCard";
 
 const emptyProject = {
   title: "",
@@ -42,7 +41,11 @@ const ProfessorDashboard = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createProject({ ...form, id: Date.now() });
+    const saved = createProject({ ...form, id: Date.now() });
+    if (!saved) {
+      return;
+    }
+
     setForm(emptyProject);
     setShowSuccess(true);
   };
@@ -210,8 +213,8 @@ const ProfessorDashboard = () => {
                 {projects.length === 1 ? "project published" : "projects published"}
               </Typography>
               <Alert severity="info" sx={{ mt: 3 }}>
-                This preview keeps projects in memory only. Add Firebase later
-                to save them and share across student accounts.
+                Projects are saved in this browser and remain after refresh.
+                Add Firebase later to share them across devices.
               </Alert>
             </CardContent>
           </Card>
@@ -236,36 +239,7 @@ const ProfessorDashboard = () => {
           <Grid container spacing={2}>
             {projects.map((project) => (
               <Grid item xs={12} sm={6} lg={4} key={project.id}>
-                <Card sx={{ height: "100%", borderRadius: 3 }}>
-                  <CardContent>
-                    <Chip
-                      label={project.course}
-                      size="small"
-                      color="primary"
-                      variant="outlined"
-                      sx={{ mb: 1 }}
-                    />
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                      {project.title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ mt: 1, whiteSpace: "pre-wrap" }}
-                    >
-                      {project.description}
-                    </Typography>
-                    {project.dueDate && (
-                      <Typography
-                        variant="caption"
-                        color="text.secondary"
-                        sx={{ display: "block", mt: 2 }}
-                      >
-                        Due {project.dueDate}
-                      </Typography>
-                    )}
-                  </CardContent>
-                </Card>
+                <ProfessorProjectCard project={project} />
               </Grid>
             ))}
           </Grid>
