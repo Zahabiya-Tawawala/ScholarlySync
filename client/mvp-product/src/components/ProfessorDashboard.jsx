@@ -52,29 +52,6 @@ const ProfessorDashboard = () => {
       id="professor-overview"
       sx={{ maxWidth: 1200, mx: "auto", scrollMarginTop: "88px" }}
     >
-      <Stack
-        direction={{ xs: "column", sm: "row" }}
-        justifyContent="space-between"
-        alignItems={{ xs: "flex-start", sm: "center" }}
-        spacing={1}
-        sx={{ mb: 3 }}
-      >
-        <Box>
-          <Typography variant="h4" sx={{ fontWeight: 800 }}>
-            Professor workspace
-          </Typography>
-          <Typography color="text.secondary">
-            Create and share project briefs with your students.
-          </Typography>
-        </Box>
-        <Chip
-          icon={<SchoolIcon />}
-          label="Professor"
-          color="primary"
-          variant="outlined"
-        />
-      </Stack>
-
       <Card
         sx={{
           mb: 3,
