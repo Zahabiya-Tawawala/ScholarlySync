@@ -1,5 +1,5 @@
 // components/Sidebar.jsx
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Drawer,
   List,
@@ -13,20 +13,21 @@ import {
 import {
   Dashboard as DashboardIcon,
   Description as DescriptionIcon,
-  People as PeopleIcon,
-  Settings as SettingsIcon,
+  AssignmentTurnedIn as AssessmentIcon,
   Logout as LogoutIcon,
-  Timeline as TimelineIcon,
 } from "@mui/icons-material";
 
 const drawerWidth = 300;
 
 const menuItems = [
-  { icon: <DashboardIcon />, label: "Dashboard", active: true, path: "/student" },
-  { icon: <DescriptionIcon />, label: "Projects", path: "/student/project-assessment" },
-  { icon: <TimelineIcon />, label: "Progress", path: "/student/progress-tracker" },
-  { icon: <PeopleIcon />, label: "Team" },
-  { icon: <SettingsIcon />, label: "Settings" },
+  {
+    icon: <DashboardIcon />,
+    label: "Dashboard",
+    active: true,
+    path: "/student",
+  },
+  { icon: <DescriptionIcon />, label: "Projects", path: "/student/projects" },
+  { icon: <AssessmentIcon />, label: "Assessment", path: "/student/assessment" },
 ];
 
 const Sidebar = ({ isOpen, isMobile, onClose }) => {
@@ -45,7 +46,7 @@ const Sidebar = ({ isOpen, isMobile, onClose }) => {
           boxSizing: "border-box",
           top: "56px",
           height: "calc(100vh - 56px)",
-          background: 'linear-gradient(rgb(116, 152, 253), rgb(168, 127, 255))'
+          background: "linear-gradient(rgb(116, 152, 253), rgb(168, 127, 255))",
         },
       }}
     >
@@ -61,8 +62,8 @@ const Sidebar = ({ isOpen, isMobile, onClose }) => {
             <ListItemButton
             //   selected={item.active}
             >
-              <ListItemIcon sx={{color: "white"}}>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.label} sx={{color: "white"}}/>
+              <ListItemIcon sx={{ color: "white" }}>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} sx={{ color: "white" }} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -73,9 +74,9 @@ const Sidebar = ({ isOpen, isMobile, onClose }) => {
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
-              <LogoutIcon sx={{color: "white"}}/>
+              <LogoutIcon sx={{ color: "white" }} />
             </ListItemIcon>
-            <ListItemText primary="Logout" sx={{color: "white"}}/>
+            <ListItemText primary="Logout" sx={{ color: "white" }} />
           </ListItemButton>
         </ListItem>
       </Box>

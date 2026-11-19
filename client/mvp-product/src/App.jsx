@@ -10,13 +10,19 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Alert, Snackbar } from "@mui/material";
 import ProgressTracker from "./components/ProgressTracker";
 import ProjectAssessment from "./components/ProjectAssessment";
+import StudentAssessment from "./components/StudentAssessment";
 import Dashboard from "./components/Dashboard";
 import ProfessorDashboard from "./components/ProfessorDashboard";
 import ProfessorProjects from "./components/ProfessorProjects";
 import ProfessorAssessment from "./components/ProfessorAssessment";
 import ProfessorLayout from "./components/ProfessorLayout";
 import Navbar from "./components/Navbar";
-import { ThemeProvider, createTheme, CssBaseline, useMediaQuery } from '@mui/material';
+import {
+  ThemeProvider,
+  createTheme,
+  CssBaseline,
+  useMediaQuery,
+} from "@mui/material";
 import Sidebar from "./components/Sidebar";
 import Layout from "./components/Layout";
 import { ProjectsContext } from "./components/ProjectsContext";
@@ -63,7 +69,7 @@ function StudentPortal() {
   );
 }
 
-function AppContent() {
+function ProfessorPortal() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -80,7 +86,7 @@ function AppContent() {
         console.error("Unable to load Firebase projects:", loadError);
         setError(`Unable to load Firebase projects: ${loadError.message}`);
         setLoading(false);
-      },
+      }
     );
   }, []);
 
@@ -106,13 +112,16 @@ function AppContent() {
   return (
     <BrowserRouter>
       <ProjectsContext.Provider
-        value={{ projects, loading, createProject, updateProject, deleteProject }}
+        value={{
+          projects,
+          loading,
+          createProject,
+          updateProject,
+          deleteProject,
+        }}
       >
         <Routes>
-          <Route
-            path="/professor"
-            element={<ProfessorLayout />}
-          >
+          <Route path="/professor" element={<ProfessorLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<ProfessorDashboard />} />
             <Route path="projects" element={<ProfessorProjects />} />
@@ -126,29 +135,23 @@ function AppContent() {
             <Route index element={<Dashboard />} />
             <Route path="student">
               <Route index element={<Dashboard />} />
-              <Route
-                path="project-assessment"
+              {/* <Route
+                path="project"
                 element={<ProjectAssessment />}
-              />
-              <Route
-                path="progress-tracker"
-                element={<ProgressTracker />}
-              />
+              /> */}
+              <Route path="projects" element={<ProjectAssessment />} />
+              <Route path="assessment" element={<StudentAssessment />} />
+              <Route path="progress-tracker" element={<ProgressTracker />} />
             </Route>
             <Route
               path="ProjectAssessment"
-              element={
-                <Navigate to="/student/project-assessment" replace />
-              }
+              element={<Navigate to="/student/project-assessment" replace />}
             />
             <Route
               path="ProgressTracker"
               element={<Navigate to="/student/progress-tracker" replace />}
             />
-            <Route
-              path="*"
-              element={<Navigate to="/student" replace />}
-            />
+            <Route path="*" element={<Navigate to="/student" replace />} />
           </Route>
         </Routes>
         <Snackbar
@@ -173,7 +176,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppContent />
+      <ProfessorPortal />
     </ThemeProvider>
   );
 }
