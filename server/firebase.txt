@@ -1,0 +1,11 @@
+To connect your Firebase project:
+
+In Firebase Console, open Project settings → General → Your apps and copy your Web App config.
+Copy client/mvp-product/.env.example to client/mvp-product/.env.local. Fill in the API key, auth domain, project ID, and app ID; the database URL from your screenshot is already shown in the example. .env.local is ignored by Git.
+Put your project records under /projects/{projectId}. The app can map the snake_case fields from your example, but the record must be under /projects; move the root-level project - 1 record there. Use YYYY-MM-DD for dates.
+
+
+Restart the Vite server after setting the environment values. For deployment, add the same variables in Vercel’s project environment settings.
+I haven’t connected to the live database yet because the Web App config isn’t present. One important limitation: the app doesn’t have Firebase Authentication yet, so it can’t securely restrict writes to professors. Don’t leave public write rules enabled for deployment; role-specific rules require authentication. Don’t put a service-account private key in the frontend.
+
+The production build and lint checks for the changed files pass. npm install also reported 32 dependency audit findings; I didn’t run an automatic fix.
