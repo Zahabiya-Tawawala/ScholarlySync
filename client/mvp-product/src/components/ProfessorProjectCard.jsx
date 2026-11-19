@@ -40,15 +40,15 @@ const ProfessorProjectCard = ({ project }) => {
     }));
   };
 
-  const handleUpdate = (event) => {
+  const handleUpdate = async (event) => {
     event.preventDefault();
-    if (updateProject(project.id, draft)) {
+    if (await updateProject(project.id, draft)) {
       setEditOpen(false);
     }
   };
 
-  const handleDelete = () => {
-    if (deleteProject(project.id)) {
+  const handleDelete = async () => {
+    if (await deleteProject(project.id)) {
       setDeleteOpen(false);
     }
   };

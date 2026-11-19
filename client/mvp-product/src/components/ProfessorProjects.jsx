@@ -8,6 +8,7 @@ import {
   Button,
   Card,
   CardContent,
+  CircularProgress,
   Grid,
   Stack,
   Typography,
@@ -16,7 +17,7 @@ import { useProjects } from "./ProjectsContext";
 import ProfessorProjectCard from "./ProfessorProjectCard";
 
 const ProfessorProjects = () => {
-  const { projects } = useProjects();
+  const { projects, loading } = useProjects();
 
   return (
     <Box sx={{ maxWidth: 1200, mx: "auto" }}>
@@ -45,7 +46,11 @@ const ProfessorProjects = () => {
         </Button>
       </Stack>
 
-      {projects.length === 0 ? (
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
+          <CircularProgress aria-label="Loading projects" />
+        </Box>
+      ) : projects.length === 0 ? (
         <Card sx={{ borderRadius: 3, border: "1px dashed #c5c9d8" }}>
           <CardContent sx={{ textAlign: "center", py: 6 }}>
             <FolderIcon color="action" sx={{ fontSize: 42, mb: 1 }} />

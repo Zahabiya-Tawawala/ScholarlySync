@@ -10,6 +10,7 @@ import {
   Button,
   Card,
   CardContent,
+  CircularProgress,
   Grid,
   Snackbar,
   Stack,
@@ -28,7 +29,7 @@ const emptyProject = {
 };
 
 const ProfessorDashboard = () => {
-  const { projects, createProject } = useProjects();
+  const { projects, loading, createProject } = useProjects();
   const [form, setForm] = useState(emptyProject);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -39,9 +40,9 @@ const ProfessorDashboard = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const saved = createProject({ ...form, id: Date.now() });
+    const saved = await createProject(form);
     if (!saved) {
       return;
     }
@@ -212,9 +213,10 @@ const ProfessorDashboard = () => {
               <Typography color="text.secondary">
                 {projects.length === 1 ? "project published" : "projects published"}
               </Typography>
-              <Alert severity="info" sx={{ mt: 3 }}>
-                Projects are saved in this browser and remain after refresh.
-                Add Firebase later to share them across devices.
+              <Alert severity={loading ? "info" : "success"} sx={{ mt: 3 }}>
+                {loading
+                  ? "Connecting to Firebase and loading projects."
+                  : "Projects are stored in Firebase and shared with the student Projects view."}
               </Alert>
             </CardContent>
           </Card>
@@ -225,7 +227,11 @@ const ProfessorDashboard = () => {
         <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
           Published projects
         </Typography>
-        {projects.length === 0 ? (
+        {loading ? (
+          <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
+            <CircularProgress aria-label="Loading projects" />
+          </Box>
+        ) : projects.length === 0 ? (
           <Card sx={{ borderRadius: 3, border: "1px dashed #c5c9d8" }}>
             <CardContent sx={{ textAlign: "center", py: 5 }}>
               <FolderIcon color="action" sx={{ fontSize: 40, mb: 1 }} />

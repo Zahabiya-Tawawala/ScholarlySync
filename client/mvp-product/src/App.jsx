@@ -20,55 +20,12 @@ import { ThemeProvider, createTheme, CssBaseline, useMediaQuery } from '@mui/mat
 import Sidebar from "./components/Sidebar";
 import Layout from "./components/Layout";
 import { ProjectsContext } from "./components/ProjectsContext";
-
-const projectsStorageKey = "scholarly-sync-projects";
-
-// Give a fresh browser a sample project to view in both role portals.
-const demoProjects = [
-  {
-    id: "demo-project",
-    title: "Build a Personal Portfolio",
-    course: "Web Development",
-    description:
-      "Create a responsive portfolio website that introduces you and showcases your work.",
-    requirements:
-      "Include an About section, at least two projects, and contact information.",
-    dueDate: "",
-  },
-];
-
-const isProject = (project) =>
-  project !== null &&
-  typeof project === "object" &&
-  (typeof project.id === "string" || typeof project.id === "number") &&
-  typeof project.title === "string" &&
-  typeof project.course === "string" &&
-  typeof project.description === "string" &&
-  (project.requirements === undefined ||
-    typeof project.requirements === "string") &&
-  (project.dueDate === undefined || typeof project.dueDate === "string");
-
-const readInitialProjects = () => {
-  try {
-    const storedProjects = window.localStorage.getItem(projectsStorageKey);
-    if (storedProjects === null) {
-      return { projects: demoProjects, error: null };
-    }
-
-    const parsedProjects = JSON.parse(storedProjects);
-    if (!Array.isArray(parsedProjects) || !parsedProjects.every(isProject)) {
-      throw new Error("The saved project list has an invalid format.");
-    }
-
-    return { projects: parsedProjects, error: null };
-  } catch (error) {
-    console.error("Unable to load saved projects:", error);
-    return {
-      projects: demoProjects,
-      error: "Saved projects could not be loaded. Showing the demo project.",
-    };
-  }
-};
+import {
+  createFirebaseProject,
+  deleteFirebaseProject,
+  subscribeToProjects,
+  updateFirebaseProject,
+} from "./services/projectsService";
 
 const theme = createTheme({
   palette: {
@@ -107,94 +64,49 @@ function StudentPortal() {
 }
 
 function AppContent() {
-  const [projectState, setProjectState] = useState(readInitialProjects);
-  const { projects, error } = projectState;
-
-  // Persist each change before updating React state so failed saves are visible.
-  const saveProjects = (updatedProjects) => {
-    try {
-      window.localStorage.setItem(
-        projectsStorageKey,
-        JSON.stringify(updatedProjects),
-      );
-      setProjectState({ projects: updatedProjects, error: null });
-      return true;
-    } catch (storageError) {
-      console.error("Unable to save projects:", storageError);
-      setProjectState((currentState) => ({
-        ...currentState,
-        error: "Project changes could not be saved in this browser.",
-      }));
-      return false;
-    }
-  };
-
-  const createProject = (project) => {
-    return saveProjects([project, ...projects]);
-  };
-
-  const updateProject = (projectId, changes) => {
-    if (!projects.some((project) => project.id === projectId)) {
-      setProjectState((currentState) => ({
-        ...currentState,
-        error: "That project no longer exists. Refresh and try again.",
-      }));
-      return false;
-    }
-
-    const updatedProjects = projects.map((project) =>
-      project.id === projectId ? { ...project, ...changes } : project,
-    );
-    return saveProjects(updatedProjects);
-  };
-
-  const deleteProject = (projectId) => {
-    if (!projects.some((project) => project.id === projectId)) {
-      setProjectState((currentState) => ({
-        ...currentState,
-        error: "That project no longer exists. Refresh and try again.",
-      }));
-      return false;
-    }
-
-    const updatedProjects = projects.filter(
-      (project) => project.id !== projectId,
-    );
-    return saveProjects(updatedProjects);
-  };
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Keep other open tabs in sync when a project changes in this browser.
-    const handleStorageChange = (event) => {
-      if (event.key !== projectsStorageKey || event.newValue === null) {
-        return;
-      }
-
-      try {
-        const updatedProjects = JSON.parse(event.newValue);
-        if (!Array.isArray(updatedProjects) || !updatedProjects.every(isProject)) {
-          throw new Error("The saved project list has an invalid format.");
-        }
-
-        // Keep open student and professor tabs in sync with browser storage.
-        setProjectState({ projects: updatedProjects, error: null });
-      } catch (storageError) {
-        console.error("Unable to read project changes from another tab:", storageError);
-        setProjectState((currentState) => ({
-          ...currentState,
-          error: "Project changes from another tab could not be loaded.",
-        }));
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    // Realtime Database pushes updates to this listener for both role portals.
+    return subscribeToProjects(
+      (remoteProjects) => {
+        setProjects(remoteProjects);
+        setLoading(false);
+        setError(null);
+      },
+      (loadError) => {
+        console.error("Unable to load Firebase projects:", loadError);
+        setError(`Unable to load Firebase projects: ${loadError.message}`);
+        setLoading(false);
+      },
+    );
   }, []);
+
+  const runProjectChange = async (change) => {
+    try {
+      await change();
+      setError(null);
+      return true;
+    } catch (changeError) {
+      console.error("Unable to save Firebase project changes:", changeError);
+      setError(`Unable to save project changes: ${changeError.message}`);
+      return false;
+    }
+  };
+
+  const createProject = (project) =>
+    runProjectChange(() => createFirebaseProject(project));
+  const updateProject = (projectId, changes) =>
+    runProjectChange(() => updateFirebaseProject(projectId, changes));
+  const deleteProject = (projectId) =>
+    runProjectChange(() => deleteFirebaseProject(projectId));
 
   return (
     <BrowserRouter>
       <ProjectsContext.Provider
-        value={{ projects, createProject, updateProject, deleteProject }}
+        value={{ projects, loading, createProject, updateProject, deleteProject }}
       >
         <Routes>
           <Route
@@ -242,22 +154,12 @@ function AppContent() {
         <Snackbar
           open={Boolean(error)}
           autoHideDuration={5000}
-          onClose={() =>
-            setProjectState((currentState) => ({
-              ...currentState,
-              error: null,
-            }))
-          }
+          onClose={() => setError(null)}
         >
           <Alert
             severity="error"
             variant="filled"
-            onClose={() =>
-              setProjectState((currentState) => ({
-                ...currentState,
-                error: null,
-              }))
-            }
+            onClose={() => setError(null)}
           >
             {error}
           </Alert>

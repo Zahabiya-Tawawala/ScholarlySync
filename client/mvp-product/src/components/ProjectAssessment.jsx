@@ -3,6 +3,7 @@ import {
   Card,
   CardContent,
   Chip,
+  CircularProgress,
   Stack,
   Typography,
 } from "@mui/material";
@@ -11,11 +12,15 @@ import ProjectCard from "./Card";
 import { useProjects } from "./ProjectsContext";
 
 const ProjectAssessment = () => {
-  const { projects } = useProjects();
+  const { projects, loading } = useProjects();
 
   return (
     <Box>
-      {projects.length > 0 && (
+      {loading ? (
+        <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
+          <CircularProgress aria-label="Loading projects" />
+        </Box>
+      ) : projects.length > 0 && (
         <Box sx={{ mb: 4 }}>
           <Typography variant="h5" sx={{ mb: 2, fontWeight: 700 }}>
             Projects from your professors
